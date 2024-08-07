@@ -1,5 +1,6 @@
 from .handle import NotificationHandle
 from CEACStatusBot.request import query_status
+from CEACStatusBot.utils import read, write
 from CEACStatusBot.captcha import CaptchaHandle,OnnxCaptchaHandle
 
 class NotificationManager():
@@ -16,6 +17,13 @@ class NotificationManager():
 
     def send(self,) -> None:
         res = query_status(self.__location, self.__number, self.__passport_number, self.__surname, self.__captchaHandle)
+
+        status = read()
+        if status == res['status']:
+            print("No status change")
+            return
+        write_result = write(res['status'])
+        print(write_result)
 
         if res['status'] == "Refused":
             import os,pytz,datetime
