@@ -47,3 +47,4 @@ jobs:
           TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
           TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
         run: python trigger.py
+      - uses: stefanzweifel/git-auto-commit-action@v5
